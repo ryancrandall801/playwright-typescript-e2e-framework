@@ -1,21 +1,21 @@
 name: Playwright Tests
 
 on:
-  pull_request:
   push:
     branches: [main]
+  pull_request:
 
 jobs:
-  test:
-    name: Run Playwright tests
+  ui-tests:
+    name: UI Tests
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -27,21 +27,61 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run tests
-        run: npx playwright test
+      - name: Run UI tests
+        run: npx playwright test --grep "@smoke"
 
-      - name: Upload Playwright report
-        uses: actions/upload-artifact@v4
+      - name: Upload UI Playwright HTML report
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-ui
           path: playwright-report/
           retention-days: 7
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
+      - name: Upload UI test results
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: test-results-ui
+          path: test-results/
+          retention-days: 7
+
+  api-tests:
+    name: API Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run API tests
+        run: npx playwright test --grep "@api"
+
+      - name: Upload API Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-api
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Upload API test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-api
           path: test-results/
           retention-days: 7
