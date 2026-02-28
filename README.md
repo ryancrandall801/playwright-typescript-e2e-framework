@@ -71,7 +71,6 @@ Variables:
 
 CI uses GitHub Actions Secrets for these values
 
-```md
 Example `.env` file:
 
 ```env
