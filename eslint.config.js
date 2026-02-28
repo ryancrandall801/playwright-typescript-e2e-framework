@@ -2,9 +2,20 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import prettierPlugin from 'eslint-plugin-prettier';
 import playwright from 'eslint-plugin-playwright';
+import globals from 'globals';
 
 export default [
   js.configs.recommended,
+
+  // Scripts (Node)
+  {
+    files: ['scripts/**/*.js', 'scripts/**/*.mjs'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
 
   ...tseslint.configs.recommended,
 
@@ -15,6 +26,9 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+      },
+      globals: {
+        ...globals.node,
       },
     },
     plugins: {
