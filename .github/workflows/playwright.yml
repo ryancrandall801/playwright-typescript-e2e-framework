@@ -124,7 +124,7 @@ jobs:
           name: test-results-api
           path: test-results/
           retention-days: 7
-      
+
       - name: Upload API JUnit report
         if: always()
         uses: actions/upload-artifact@v4
@@ -133,7 +133,7 @@ jobs:
           path: test-results/junit.xml
           retention-days: 7
 
-env: 
-    BASE_URL: ${{ secrets.BASE_URL || 'https://saucedemo.com' }}
-    E2E_USERNAME: ${{ secrets.E2E_USERNAME }}
-    E2E_PASSWORD: ${{ secrets.E2E_PASSWORD }}
+env:
+  BASE_URL: ${{ secrets.BASE_URL || 'https://saucedemo.com' }}
+  E2E_USERNAME: ${{ secrets.E2E_USERNAME }}
+  E2E_PASSWORD: ${{ secrets.E2E_PASSWORD }}
