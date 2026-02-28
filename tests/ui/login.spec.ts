@@ -24,7 +24,7 @@ test.describe('@smoke login', () => {
 
     await expect(page.locator('[data-test="error"]')).toBeVisible();
     await expect(page.locator('[data-test="error"]')).toContainText(
-      /Username and password do not match/i
+      /Username and password do not match/i,
     );
   });
 });
