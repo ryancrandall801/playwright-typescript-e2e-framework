@@ -3,10 +3,13 @@ import { LoginPage } from '../../src/pages/LoginPage';
 
 test.describe('@smoke login', () => {
   test('successful login navigates to inventory', async ({ page }) => {
+    const username = process.env.E2E_USERNAME ?? 'standard_user';
+    const password = process.env.E2E_PASSWORD ?? 'secret_sauce';
+
     const login = new LoginPage(page);
 
     await login.goto();
-    await login.login('standard_user', 'secret_sauce');
+    await login.login(username, password);
 
     // SauceDemo redirects to /inventory.html on success
     await expect(page).toHaveURL(/inventory\.html/);
