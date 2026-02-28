@@ -16,7 +16,7 @@ test.describe('@api JSONPlaceholder Users API', () => {
         id: expect.any(Number),
         name: expect.any(String),
         email: expect.any(String),
-      })
+      }),
     );
   });
 
