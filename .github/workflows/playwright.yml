@@ -51,6 +51,14 @@ jobs:
           path: test-results/
           retention-days: 7
 
+      - name: Upload UI JUnit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-ui-${{ matrix.browser }}
+          path: test-results/junit.xml
+          retention-days: 7
+
   api-tests:
     name: API Tests
     runs-on: ubuntu-latest
@@ -89,6 +97,14 @@ jobs:
         with:
           name: test-results-api
           path: test-results/
+          retention-days: 7
+      
+      - name: Upload API JUnit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-api
+          path: test-results/junit.xml
           retention-days: 7
 
 env: 
