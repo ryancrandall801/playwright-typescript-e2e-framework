@@ -55,3 +55,27 @@ tests/
 Dockerfile     # Containerized test execution
 playwright.config.ts
 ```
+
+## 🔐 Environment Variables
+
+Copy `.env.example` to `.env` and adjust as needed:
+
+```bash
+cp .env.example .env
+```
+
+Variables:
+- BASE_URL
+- E2E_USERNAME
+- E2E_PASSWORD
+
+CI uses GitHub Actions Secrets for these values
+
+```md
+Example `.env` file:
+
+```env
+BASE_URL=https://www.saucedemo.com
+E2E_USERNAME=standard_user
+E2E_PASSWORD=secret_sauce
+```
