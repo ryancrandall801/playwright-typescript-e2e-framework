@@ -7,8 +7,11 @@ export default defineConfig({
   testDir: './tests',
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2: undefined,
-  reporter: [['html', {open: 'never'}]],
-
+  reporter: [
+    ['html', { open: 'never' }],
+    ['junit', { outputFile: 'test-results/junit.xml' }],
+  ],
+  
   use: {
     baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
     trace: 'on-first-retry',
