@@ -37,11 +37,11 @@ GitHub Actions pipeline:
 
 ## 🧠 Design Highlights
 
-* Page Object Model for UI abstraction
-* TypeScript for strong typing and maintainability
-* Dockerized test execution for consistent runtime environments
-* GitHub Actions CI for automated validation
-* Clean, conventional commit history
+- Page Object Model for UI abstraction
+- TypeScript for strong typing and maintainability
+- Dockerized test execution for consistent runtime environments
+- GitHub Actions CI for automated validation
+- Clean, conventional commit history
 
 ## 📁 Project Structure
 
@@ -65,6 +65,7 @@ cp .env.example .env
 ```
 
 Variables:
+
 - BASE_URL
 - E2E_USERNAME
 - E2E_PASSWORD
